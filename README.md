@@ -1,2 +1,2 @@
 # go-rpn
-Reverse polish notation calculator
+reverse polish notation calculator
