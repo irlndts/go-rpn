@@ -74,7 +74,7 @@ func Parse(e string) (rpn string) {
 // Revers Polish Notation calculator
 // input is a string of rpn expression
 // output is a result
-func Calc(expr string) (interface{}, error) {
+func Calc(expr string) (float64, error) {
 	tokens := strings.Split(expr, " ")
 	stack := make([]int, 0)
 
@@ -90,19 +90,19 @@ func Calc(expr string) (interface{}, error) {
 			case "+", "-", "*", "/", "^":
 				stack, err = operation(stack, token)
 				if err != nil {
-					return nil, err
+					return 0, err
 				}
 				break
 			case " ":
 				break
 			default:
-				return nil, errors.New(fmt.Sprintf("Error: symbol '%s' is not available for rpn calculator", token))
+				return 0, errors.New(fmt.Sprintf("Error: symbol '%s' is not available for rpn calculator", token))
 			}
 		}
 	}
 
 	result, _ := pop(stack)
-	return result, nil
+	return float64(result), nil
 }
 
 func operation(stack []int, op string) ([]int, error) {
