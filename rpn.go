@@ -7,8 +7,7 @@ import (
 	"strings"
 )
 
-var input = "3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3"
-
+// A list of operations with priorities which are currently available
 var opa = map[string]struct {
 	prec   int
 	rAssoc bool
@@ -20,9 +19,10 @@ var opa = map[string]struct {
 	"-": {2, false},
 }
 
-// Parsing a string via shunting-yard algorithm to the rpm expression
-// input: string
-// output: string
+// Parsing a string via shunting-yard algorithm to the rpn expression
+// input: expression string
+// returns RPN style string
+// for more information about Shunting-Yard look at https://en.wikipedia.org/wiki/Shunting-yard_algorithm
 func Parse(e string) (rpn string) {
 	var stack []string // holds operators and left parenthesis
 	for _, tok := range strings.Fields(e) {
@@ -72,8 +72,9 @@ func Parse(e string) (rpn string) {
 }
 
 // Revers Polish Notation calculator
-// input is a string of rpn expression
-// output is a result
+// input is a string of rpn-style expression
+// returns a result
+// for more details about RPN look at https://en.wikipedia.org/wiki/Reverse_Polish_notation
 func Calc(expr string) (float64, error) {
 	tokens := strings.Split(expr, " ")
 	stack := make([]int, 0)

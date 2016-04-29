@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(rpn.Parse("3 + 4 * 2 / ( 1 - 5 ) "))
-	fmt.Println(rpn.Calc(rpn.Parse("3 + 4 * 2 / ( 1 - 5 )")))
+	fmt.Println(rpn.Parse("8 * 3 - 5 + ( 1 - 8 * 2 )"))
+	fmt.Println(rpn.Calc(rpn.Parse("8 * 3 - 5 + ( 1 - 8 * 2 )")))
 
 }
